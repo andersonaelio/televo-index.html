@@ -2,23 +2,23 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="TELEVO — Motorista particular em Florianópolis. André Luiz, mais de 6 anos de experiência e 40 mil viagens.">
-<title>TELEVO — Motorista Particular em Florianópolis</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="description" content="TELEVO — Motorista particular em Florianópolis. André Luiz, mais de 6 anos de experiência e 40 mil viagens. Agende pelo WhatsApp.">
+<meta name="theme-color" content="#1a2e22">
+<title>TELEVO — Motorista Particular</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&display=swap" rel="stylesheet">
-
 <style>
-/* ─── TOKENS ─────────────────────────────────────────────── */
+/* ═══ TOKENS ═══════════════════════════════════════════════ */
 :root {
-  --bg:          #f5f4f0;
+  --bg:          #f4f3ef;
   --surface:     #ffffff;
-  --surface-2:   #eef0eb;
+  --surface-2:   #eceee8;
   --green-deep:  #1a2e22;
   --green-mid:   #2d4a36;
   --green-light: #4a7c5f;
-  --green-mist:  #d6e4d8;
+  --green-mist:  #d2dfd4;
   --blue-pin:    #4a90d9;
   --blue-pin-2:  #6eb0f0;
   --text:        #1a2e22;
@@ -26,583 +26,199 @@
   --text-muted:  #8a9e93;
   --gold:        #c9a84c;
   --gold-light:  #e8c96b;
-  --radius-sm:   10px;
-  --radius-md:   16px;
-  --radius-lg:   24px;
-  --shadow-sm:   0 2px 12px rgba(26,46,34,.07);
-  --shadow-md:   0 8px 32px rgba(26,46,34,.12);
-  --shadow-lg:   0 20px 60px rgba(26,46,34,.18);
-  --font-display: 'Fraunces', Georgia, serif;
-  --font-body:    'DM Sans', system-ui, sans-serif;
+  --amber-warm:  #f59e0b;
+  --red-warm:    #dc2626;
+  --r-sm:   10px;
+  --r-md:   14px;
+  --r-lg:   22px;
+  --r-xl:   32px;
+  --s-sm:   0 1px 8px rgba(26,46,34,.06);
+  --s-md:   0 6px 24px rgba(26,46,34,.1);
+  --s-lg:   0 16px 48px rgba(26,46,34,.14);
+  --font-d: 'Fraunces', Georgia, serif;
+  --font-b: 'DM Sans', system-ui, sans-serif;
   --t: cubic-bezier(0.4, 0, 0.2, 1);
-  --t-smooth: cubic-bezier(0.65, 0, 0.35, 1);
 }
 
-/* ─── RESET ──────────────────────────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-  font-family: var(--font-body);
-  background: var(--bg);
-  color: var(--text);
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-}
-img { display: block; max-width: 100%; }
-a { text-decoration: none; color: inherit; }
-button { cursor: pointer; border: none; background: none; font-family: inherit; color: inherit; }
-input, select, textarea { font-family: inherit; }
+/* ═══ RESET ════════════════════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--font-b);background:var(--bg);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer;border:none;background:none;font-family:inherit;color:inherit}
+input,select,textarea{font-family:inherit}
 
-.logo-svg { display: block; }
-
-/* ─── HERO LIMPO ─────────────────────────────────────────── */
-#hero {
-  position: relative;
-  height: 100dvh;
-  min-height: 560px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  background:
-    radial-gradient(ellipse 100% 70% at 50% 50%, #1f3a2a 0%, #0f1e16 100%);
-}
-
-.hero-stage {
-  position: relative;
-  z-index: 10;
-  width: 100%;
-  max-width: 900px;
-  padding: 0 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* ── FASE 1: texto "te levo" ──────────────────────────────── */
-.phase-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-family: var(--font-display);
-  font-style: italic;
-  font-weight: 300;
-  font-size: clamp(48px, 13vw, 88px);
-  color: white;
-  letter-spacing: -.02em;
-  opacity: 0;
-  white-space: nowrap;
-  animation: phaseTextIn 1.5s var(--t-smooth) .3s forwards,
-             phaseTextOut 0.6s var(--t-smooth) 1.8s forwards;
-}
-
-@keyframes phaseTextIn {
-  0% { opacity: 0; transform: translate(-50%, -50%) scale(.94); letter-spacing: -.04em; }
-  100% { opacity: 1; transform: translate(-50%, -50%) scale(1); letter-spacing: -.02em; }
-}
-
-@keyframes phaseTextOut {
-  to { opacity: 0; transform: translate(-50%, -50%) scale(1.05); }
-}
-
-/* ── FASE 2: logo + frase rotativa ────────────────────────── */
-.phase-logo {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  opacity: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 24px;
-  animation: phaseLogoIn 0.7s var(--t-smooth) 2.2s forwards,
-             phaseLogoOut 0.6s var(--t-smooth) 5.4s forwards;
-}
-
-@keyframes phaseLogoIn {
-  from { opacity: 0; transform: translate(-50%, -50%) scale(.96); }
-  to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-}
-
-@keyframes phaseLogoOut {
-  to { opacity: 0; transform: translate(-50%, -50%) scale(.98); }
-}
-
-.rotating-line {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-weight: 300;
-  font-size: clamp(15px, 4.2vw, 21px);
-  color: rgba(255,255,255,.55);
-  letter-spacing: .01em;
-  text-align: center;
-  opacity: 0;
-  animation: rotatingIn 0.5s var(--t-smooth) 2.8s forwards;
-}
-
-@keyframes rotatingIn { to { opacity: 1; } }
-
-.rotating-target {
-  color: var(--green-mist);
-  display: inline-block;
-  min-width: 1px;
-  transition: opacity .25s var(--t);
-}
-
-/* ─── NAVBAR ─────────────────────────────────────────────── */
+/* ═══ NAVBAR ═══════════════════════════════════════════════ */
 #navbar {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 0; left: 0; right: 0;
   z-index: 100;
-  padding: 16px 20px;
+  padding: 14px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  transition: all .5s var(--t);
+  background: rgba(244,243,239,.9);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(26,46,34,.06);
+  transition: box-shadow .3s var(--t);
 }
 
-#navbar.scrolled {
-  background: rgba(245,244,240,.92);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  padding: 12px 20px;
-  box-shadow: var(--shadow-sm);
-}
+#navbar.scrolled { box-shadow: var(--s-sm); }
 
-.nav-logo {
-  opacity: 0;
-  transform: translateX(-8px) scale(.9);
-  transition: all .8s var(--t-smooth);
-  pointer-events: none;
-}
-
-#navbar.revealed .nav-logo {
-  opacity: 1;
-  transform: translateX(0) scale(1);
-  pointer-events: auto;
-}
-
-.nav-cta {
-  opacity: 0;
-  transform: translateX(8px);
-  transition: all .6s var(--t-smooth) .15s;
-  pointer-events: none;
-}
-
-#navbar.revealed .nav-cta {
-  opacity: 1;
-  transform: translateX(0);
-  pointer-events: auto;
-}
-
-.btn-nav {
-  background: var(--green-deep);
-  color: white;
-  padding: 10px 18px;
-  border-radius: 100px;
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: .02em;
-  transition: all .25s var(--t);
-  white-space: nowrap;
-  display: inline-flex;
+.nav-brand {
+  display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 10px;
 }
 
-.btn-nav:hover {
-  background: var(--green-mid);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-sm);
+.nav-brand-name {
+  font-family: var(--font-b);
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--text);
+  letter-spacing: -.03em;
 }
 
-/* ─── MAIN ───────────────────────────────────────────────── */
-main { position: relative; z-index: 2; }
-
-.eyebrow {
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--green-light);
-  margin-bottom: 14px;
+.nav-right {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.eyebrow::before {
-  content: '';
-  display: block;
-  width: 20px;
-  height: 1px;
-  background: var(--green-light);
+.btn-nav-wpp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #25D366;
+  transition: transform .2s var(--t);
 }
 
-.section-title {
-  font-family: var(--font-display);
-  font-size: clamp(26px, 6vw, 38px);
-  font-weight: 400;
-  line-height: 1.2;
-  color: var(--text);
-  margin-bottom: 12px;
-  letter-spacing: -.01em;
+.btn-nav-wpp:hover { transform: scale(1.06); }
+
+.btn-nav-call {
+  display: none;
 }
 
-.section-title em { font-style: italic; color: var(--green-light); }
-
-.section-subtitle {
-  font-size: 15px;
-  line-height: 1.65;
-  color: var(--text-soft);
-  max-width: 480px;
+@media (min-width: 768px) {
+  .btn-nav-call {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--green-deep);
+    color: white;
+    padding: 9px 18px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all .2s var(--t);
+  }
+  .btn-nav-call:hover { background: var(--green-mid); }
 }
 
-/* ─── ANDRÉ ──────────────────────────────────────────────── */
-#andre {
-  background: var(--surface);
-  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-  margin-top: -24px;
-  position: relative;
-  z-index: 5;
-}
-
-.andre-inner {
-  padding: 64px 24px 72px;
-  max-width: 480px;
+/* ═══ HERO = AGENDA ════════════════════════════════════════ */
+#booking {
+  padding: 80px 20px 48px;
+  max-width: 540px;
   margin: 0 auto;
 }
 
 @media (min-width: 768px) {
-  .andre-inner {
-    max-width: 920px;
-    padding: 96px 40px;
-    display: grid;
-    grid-template-columns: .85fr 1fr;
-    gap: 64px;
-    align-items: center;
-  }
+  #booking { padding: 100px 40px 64px; max-width: 1100px; }
 }
 
-.foto-placeholder {
-  width: 100%;
-  aspect-ratio: 3/4;
-  border-radius: var(--radius-lg);
-  background: linear-gradient(160deg, var(--green-mist) 0%, var(--surface-2) 100%);
+/* trust bar */
+.trust-bar {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 12px;
-  color: var(--text-muted);
-  font-size: 13px;
-  text-align: center;
-  border: 1.5px dashed var(--green-mist);
-  position: relative;
-  overflow: hidden;
-  margin-bottom: 40px;
-  max-height: 340px;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
 }
 
-@media (min-width: 768px) {
-  .foto-placeholder { margin-bottom: 0; max-height: none; }
-}
-
-.foto-placeholder::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse 60% 40% at 50% 80%, rgba(74,124,95,.15) 0%, transparent 70%);
-}
-
-.foto-icon {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
+.trust-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-soft);
   background: var(--surface);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: var(--shadow-sm);
-  position: relative;
+  padding: 6px 12px;
+  border-radius: 100px;
+  border: 1px solid var(--surface-2);
 }
 
-.andre-text h2 {
-  font-family: var(--font-display);
-  font-size: clamp(28px, 7vw, 42px);
+.trust-chip-icon { font-size: 14px; }
+
+.booking-header {
+  margin-bottom: 36px;
+}
+
+.booking-header h1 {
+  font-family: var(--font-d);
   font-weight: 400;
+  font-size: clamp(28px, 7vw, 40px);
   line-height: 1.15;
+  letter-spacing: -.02em;
   color: var(--text);
-  margin-bottom: 20px;
-  letter-spacing: -.01em;
+  margin-bottom: 8px;
 }
 
-.andre-text h2 em {
+.booking-header h1 em {
   font-style: italic;
   color: var(--green-light);
 }
 
-.andre-text p {
-  font-size: 16px;
-  line-height: 1.7;
+.booking-header p {
+  font-size: 15px;
   color: var(--text-soft);
-  margin-bottom: 16px;
+  line-height: 1.55;
 }
 
-.carro-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--surface-2);
-  border-radius: 100px;
-  padding: 8px 16px;
-  font-size: 13px;
-  color: var(--text-soft);
-  font-weight: 500;
-  margin-top: 24px;
-}
-
-.stats-row {
-  display: flex;
-  gap: 24px;
-  margin-top: 36px;
-  padding-top: 32px;
-  border-top: 1px solid var(--surface-2);
-}
-
-.stat-item { flex: 1; }
-
-.stat-num {
-  font-family: var(--font-display);
-  font-size: 30px;
-  font-weight: 400;
-  color: var(--text);
-  line-height: 1;
-  margin-bottom: 4px;
-}
-
-.stat-label {
-  font-size: 12px;
-  color: var(--text-muted);
-  line-height: 1.4;
-}
-
-/* ─── SERVIÇOS ───────────────────────────────────────────── */
-#servicos { background: var(--bg); }
-
-.servicos-inner {
-  padding: 80px 24px;
-  max-width: 480px;
-  margin: 0 auto;
-}
-
+/* Desktop: form + André side by side */
 @media (min-width: 768px) {
-  .servicos-inner { max-width: 920px; padding: 100px 40px; }
-}
-
-.servicos-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 12px;
-  margin-top: 40px;
-}
-
-@media (min-width: 600px) {
-  .servicos-grid { grid-template-columns: 1fr 1fr; }
-}
-
-@media (min-width: 1024px) {
-  .servicos-grid { grid-template-columns: repeat(3, 1fr); }
-}
-
-.servico-card {
-  background: var(--surface);
-  border-radius: var(--radius-md);
-  padding: 28px 24px;
-  box-shadow: var(--shadow-sm);
-  border: 1px solid rgba(26,46,34,.05);
-  transition: all .3s var(--t);
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.servico-card:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-md);
-}
-
-.servico-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: var(--radius-sm);
-  background: var(--surface-2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 22px;
-}
-
-.servico-card h3 { font-size: 16px; font-weight: 600; color: var(--text); }
-.servico-card p { font-size: 14px; line-height: 1.6; color: var(--text-soft); }
-
-/* ─── TARIFAS ────────────────────────────────────────────── */
-#tarifas {
-  background: var(--green-deep);
-  border-radius: var(--radius-lg);
-  margin: 0 16px;
-  overflow: hidden;
-}
-
-.tarifas-inner {
-  padding: 64px 24px;
-  max-width: 480px;
-  margin: 0 auto;
-}
-
-@media (min-width: 768px) {
-  .tarifas-inner {
-    max-width: 920px;
-    padding: 96px 40px;
+  .booking-layout {
     display: grid;
-    grid-template-columns: 1fr 1.2fr;
-    gap: 64px;
+    grid-template-columns: 1fr .85fr;
+    gap: 56px;
     align-items: start;
   }
 }
 
-.tarifas-head .eyebrow { color: var(--green-mist); }
-.tarifas-head .eyebrow::before { background: var(--green-mist); }
-
-.tarifas-head h2 {
-  font-family: var(--font-display);
-  font-size: clamp(26px, 6vw, 38px);
-  font-weight: 400;
-  color: white;
-  line-height: 1.2;
-  margin-bottom: 16px;
-  letter-spacing: -.01em;
-}
-
-.tarifas-head h2 em { font-style: italic; color: var(--green-mist); }
-
-.tarifas-head p {
-  font-size: 15px;
-  line-height: 1.65;
-  color: rgba(255,255,255,.55);
-}
-
-.tarifas-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-top: 40px;
+/* ═══ FORM CARD ════════════════════════════════════════════ */
+.form-card {
+  background: var(--surface);
+  border-radius: var(--r-xl);
+  padding: 28px 22px 32px;
+  box-shadow: var(--s-md);
+  border: 1px solid rgba(26,46,34,.04);
 }
 
 @media (min-width: 768px) {
-  .tarifas-list { margin-top: 0; }
+  .form-card { padding: 36px 32px 40px; }
 }
 
-.tarifa-item {
-  background: rgba(255,255,255,.06);
-  border: 1px solid rgba(255,255,255,.1);
-  border-radius: var(--radius-md);
-  padding: 20px 22px;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.tarifa-icon { font-size: 20px; width: 36px; text-align: center; flex-shrink: 0; }
-.tarifa-info { flex: 1; }
-.tarifa-periodo { font-size: 13px; font-weight: 600; color: white; margin-bottom: 2px; }
-.tarifa-horario { font-size: 12px; color: rgba(255,255,255,.4); }
-.tarifa-taxa {
-  font-family: var(--font-display);
-  font-size: 20px;
-  color: var(--green-mist);
-  font-weight: 400;
-  white-space: nowrap;
-}
-
-.tarifa-nota {
-  margin-top: 24px;
-  padding: 16px 20px;
-  background: rgba(201,168,76,.1);
-  border: 1px solid rgba(201,168,76,.2);
-  border-radius: var(--radius-sm);
-  font-size: 13px;
-  color: rgba(255,255,255,.6);
-  line-height: 1.55;
-}
-
-.tarifa-nota strong { color: var(--gold-light); font-weight: 500; }
-
-/* ─── FORM AGENDAMENTO ───────────────────────────────────── */
-#agendar { background: var(--surface); }
-
-.agendar-inner {
-  padding: 80px 20px;
-  max-width: 520px;
-  margin: 0 auto;
-}
-
-@media (min-width: 768px) {
-  .agendar-inner { max-width: 640px; padding: 96px 40px; }
-}
-
-.form-title {
-  font-family: var(--font-display);
-  font-size: clamp(28px, 6vw, 38px);
-  font-weight: 400;
-  line-height: 1.2;
-  color: var(--text);
-  margin-bottom: 10px;
-  letter-spacing: -.01em;
-}
-
-.form-title em { font-style: italic; color: var(--green-light); }
-
-.form-subtitle {
-  font-size: 15px;
-  color: var(--text-soft);
-  margin-bottom: 40px;
-  line-height: 1.6;
-}
-
-.field-block { margin-bottom: 28px; }
+.field-block { margin-bottom: 24px; }
+.field-block:last-of-type { margin-bottom: 20px; }
 
 .field-label {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 14px;
+  gap: 8px;
+  margin-bottom: 10px;
   flex-wrap: wrap;
 }
 
 .field-label-text {
-  display: flex;
-  align-items: baseline;
-  gap: 10px;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
-  letter-spacing: .12em;
-  text-transform: uppercase;
   color: var(--text);
-}
-
-.field-num {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-weight: 400;
-  font-size: 16px;
-  color: var(--green-light);
-  letter-spacing: 0;
 }
 
 .field-hint {
@@ -610,120 +226,114 @@ main { position: relative; z-index: 2; }
   font-style: italic;
   color: var(--gold);
   font-weight: 400;
-  letter-spacing: 0;
-  text-transform: none;
 }
 
-/* Chips de data */
+/* ─── DATE CHIPS ─────────────────────────────────────────── */
 .date-scroller {
   display: flex;
-  gap: 8px;
+  gap: 6px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  padding-bottom: 12px;
-  margin: 0 -20px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-bottom: 8px;
+  margin: 0 -22px;
+  padding-left: 22px;
+  padding-right: 22px;
   -webkit-overflow-scrolling: touch;
-  scrollbar-width: thin;
-  scrollbar-color: var(--green-mist) transparent;
+  scrollbar-width: none;
 }
 
-.date-scroller::-webkit-scrollbar { height: 4px; }
-.date-scroller::-webkit-scrollbar-track { background: var(--surface-2); border-radius: 2px; }
-.date-scroller::-webkit-scrollbar-thumb { background: var(--green-mist); border-radius: 2px; }
+.date-scroller::-webkit-scrollbar { display: none; }
+
+@media (min-width: 768px) {
+  .date-scroller { margin: 0; padding-left: 0; padding-right: 0; }
+}
 
 .date-chip {
   flex: 0 0 auto;
   scroll-snap-align: start;
-  background: var(--surface);
-  border: 1.5px solid var(--surface-2);
-  border-radius: var(--radius-md);
-  padding: 12px 14px;
-  min-width: 74px;
+  background: var(--bg);
+  border: 1.5px solid transparent;
+  border-radius: var(--r-md);
+  padding: 10px 12px;
+  min-width: 64px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
-  transition: all .25s var(--t);
+  gap: 1px;
+  transition: all .2s var(--t);
   text-align: center;
 }
 
-.date-chip:hover { border-color: var(--green-mist); transform: translateY(-1px); }
+.date-chip:hover { border-color: var(--green-mist); }
 
 .date-chip.selected {
   background: var(--green-deep);
   border-color: var(--green-deep);
   color: white;
-  box-shadow: 0 4px 14px rgba(26,46,34,.2);
+  box-shadow: 0 3px 12px rgba(26,46,34,.2);
 }
 
-.date-chip-label {
-  font-size: 10px;
-  font-weight: 600;
+.date-chip-weekday {
+  font-size: 9px;
+  font-weight: 700;
   letter-spacing: .08em;
   text-transform: uppercase;
   color: var(--text-muted);
 }
 
-.date-chip.selected .date-chip-label { color: rgba(255,255,255,.6); }
+.date-chip.selected .date-chip-weekday { color: rgba(255,255,255,.55); }
 
 .date-chip-num {
-  font-family: var(--font-display);
-  font-size: 22px;
+  font-family: var(--font-d);
+  font-size: 20px;
   font-weight: 400;
-  line-height: 1;
+  line-height: 1.1;
   color: var(--text);
 }
 
 .date-chip.selected .date-chip-num { color: white; }
 
 .date-chip-month {
-  font-size: 10px;
+  font-size: 9px;
   color: var(--text-muted);
   text-transform: lowercase;
-  letter-spacing: .04em;
 }
 
-.date-chip.selected .date-chip-month { color: rgba(255,255,255,.5); }
+.date-chip.selected .date-chip-month { color: rgba(255,255,255,.45); }
 
-/* Chips de horário */
-.time-grid-wrapper {
-  position: relative;
+/* ─── TIME CHIPS ─────────────────────────────────────────── */
+.time-grid-wrap {
   background: var(--bg);
-  border-radius: var(--radius-md);
-  padding: 14px;
-  border: 1px solid var(--surface-2);
+  border-radius: var(--r-md);
+  padding: 10px;
 }
 
 .time-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 6px;
-  max-height: 200px;
+  gap: 5px;
+  max-height: 176px;
   overflow-y: auto;
-  padding-right: 6px;
+  padding-right: 4px;
   scrollbar-width: thin;
   scrollbar-color: var(--green-mist) transparent;
 }
 
-@media (min-width: 480px) { .time-grid { grid-template-columns: repeat(5, 1fr); } }
+@media (min-width: 400px) { .time-grid { grid-template-columns: repeat(5, 1fr); } }
 @media (min-width: 600px) { .time-grid { grid-template-columns: repeat(6, 1fr); } }
 
-.time-grid::-webkit-scrollbar { width: 4px; }
-.time-grid::-webkit-scrollbar-track { background: transparent; }
+.time-grid::-webkit-scrollbar { width: 3px; }
 .time-grid::-webkit-scrollbar-thumb { background: var(--green-mist); border-radius: 2px; }
 
 .time-chip {
   background: var(--surface);
-  border: 1.5px solid var(--surface-2);
-  border-radius: 10px;
-  padding: 9px 6px;
-  font-size: 13px;
+  border: 1.5px solid transparent;
+  border-radius: 8px;
+  padding: 8px 4px;
+  font-size: 12.5px;
   font-weight: 600;
   color: var(--text);
-  transition: all .2s var(--t);
-  letter-spacing: -.02em;
+  transition: all .15s var(--t);
   text-align: center;
   position: relative;
 }
@@ -734,49 +344,47 @@ main { position: relative; z-index: 2; }
   background: var(--green-deep);
   border-color: var(--green-deep);
   color: white;
-  box-shadow: 0 3px 10px rgba(26,46,34,.2);
+  box-shadow: 0 2px 8px rgba(26,46,34,.2);
 }
 
-.time-chip.surge-orange::after {
+.time-chip.surge-30::after {
   content: '+30%';
   position: absolute;
-  top: -6px;
-  right: -4px;
-  background: var(--gold);
+  top: -5px; right: -3px;
+  background: var(--amber-warm);
   color: white;
-  font-size: 8px;
-  font-weight: 700;
-  padding: 2px 4px;
-  border-radius: 6px;
-  letter-spacing: 0;
+  font-size: 7px;
+  font-weight: 800;
+  padding: 1px 4px;
+  border-radius: 5px;
+  line-height: 1.4;
 }
 
-.time-chip.surge-red::after {
+.time-chip.surge-50::after {
   content: '+50%';
   position: absolute;
-  top: -6px;
-  right: -4px;
-  background: #c2410c;
+  top: -5px; right: -3px;
+  background: var(--red-warm);
   color: white;
-  font-size: 8px;
-  font-weight: 700;
-  padding: 2px 4px;
-  border-radius: 6px;
-  letter-spacing: 0;
+  font-size: 7px;
+  font-weight: 800;
+  padding: 1px 4px;
+  border-radius: 5px;
+  line-height: 1.4;
 }
 
+/* ─── TEXT INPUTS ─────────────────────────────────────────── */
 .text-input {
   width: 100%;
-  background: var(--surface);
-  border: 1.5px solid var(--surface-2);
-  border-radius: var(--radius-sm);
-  padding: 15px 18px;
+  background: var(--bg);
+  border: 1.5px solid transparent;
+  border-radius: var(--r-sm);
+  padding: 14px 16px;
   font-size: 15px;
   color: var(--text);
   transition: all .2s var(--t);
-  -webkit-appearance: none;
-  appearance: none;
   outline: none;
+  -webkit-appearance: none;
 }
 
 .text-input:focus {
@@ -787,167 +395,70 @@ main { position: relative; z-index: 2; }
 
 .text-input::placeholder { color: var(--text-muted); }
 
+.input-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+/* ─── PAYMENT ─────────────────────────────────────────────── */
 .payment-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
+  gap: 6px;
 }
 
-.payment-option {
-  background: var(--surface);
-  border: 1.5px solid var(--surface-2);
-  border-radius: var(--radius-md);
-  padding: 16px 8px;
+.payment-btn {
+  background: var(--bg);
+  border: 1.5px solid transparent;
+  border-radius: var(--r-md);
+  padding: 14px 6px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
   transition: all .2s var(--t);
 }
 
-.payment-option:hover { border-color: var(--green-mist); transform: translateY(-1px); }
+.payment-btn:hover { border-color: var(--green-mist); }
 
-.payment-option.selected {
+.payment-btn.selected {
   background: var(--green-deep);
   border-color: var(--green-deep);
   color: white;
-  box-shadow: 0 4px 14px rgba(26,46,34,.2);
+  box-shadow: 0 3px 10px rgba(26,46,34,.18);
 }
 
-.payment-icon { font-size: 22px; }
+.pay-icon { font-size: 20px; }
+.pay-text { font-size: 12px; font-weight: 600; }
 
-.payment-label { font-size: 13px; font-weight: 600; color: var(--text); }
-.payment-option.selected .payment-label { color: white; }
-
-.btn-map-preview {
+/* ─── ROTA BUTTON ─────────────────────────────────────────── */
+.btn-rota {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  padding: 12px 16px;
-  background: var(--bg);
+  gap: 6px;
+  padding: 10px;
+  background: transparent;
   border: 1.5px dashed var(--green-mist);
-  border-radius: var(--radius-sm);
-  font-size: 13px;
-  color: var(--text-soft);
-  font-weight: 500;
-  transition: all .2s var(--t);
-  margin-top: 8px;
-}
-
-.btn-map-preview:hover { background: var(--green-mist); color: var(--green-deep); }
-
-.btn-map-preview.active {
-  background: rgba(74,144,217,.08);
-  border-color: var(--blue-pin);
-  color: var(--blue-pin);
-  border-style: solid;
-}
-
-.btn-agendar {
-  width: 100%;
-  margin-top: 16px;
-  padding: 20px 32px;
-  background: var(--green-deep);
-  color: white;
-  border-radius: 100px;
-  font-size: 16px;
-  font-weight: 600;
-  letter-spacing: .01em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  transition: all .3s var(--t);
-  box-shadow: 0 6px 24px rgba(26,46,34,.25);
-}
-
-.btn-agendar:hover {
-  background: var(--green-mid);
-  transform: translateY(-2px);
-  box-shadow: 0 10px 36px rgba(26,46,34,.3);
-}
-
-.btn-agendar:active { transform: translateY(0); }
-
-.form-disclaimer {
-  margin-top: 20px;
+  border-radius: var(--r-sm);
   font-size: 12px;
+  font-weight: 500;
   color: var(--text-muted);
-  text-align: center;
-  line-height: 1.6;
-}
-
-/* Rodapé */
-footer {
-  background: var(--green-deep);
-  padding: 56px 24px 120px;
-  text-align: center;
-}
-
-@media (min-width: 768px) {
-  footer { padding: 56px 40px 56px; }
-}
-
-.footer-logo { margin: 0 auto 16px; display: inline-block; }
-
-.footer-tagline {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: 16px;
-  color: rgba(255,255,255,.4);
-  margin-bottom: 24px;
-}
-
-.footer-info {
-  font-size: 13px;
-  color: rgba(255,255,255,.35);
-  line-height: 1.8;
-}
-
-.footer-info a { color: rgba(255,255,255,.55); transition: color .2s; }
-.footer-info a:hover { color: white; }
-
-/* Barra flutuante mobile */
-#floating-bar {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 200;
-  padding: 12px 16px 20px;
-  background: rgba(245,244,240,.95);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-top: 1px solid rgba(26,46,34,.08);
-  display: flex;
-  gap: 10px;
-  transform: translateY(100%);
-  transition: transform .5s var(--t-smooth);
-}
-
-#floating-bar.visible { transform: translateY(0); }
-
-@media (min-width: 768px) { #floating-bar { display: none; } }
-
-.btn-float-wpp {
-  flex: 0 0 auto;
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  background: #25D366;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 16px rgba(37,211,102,.35);
   transition: all .2s var(--t);
+  margin-top: 6px;
 }
 
-.btn-float-wpp:hover { transform: scale(1.05); }
+.btn-rota:hover { background: var(--green-mist); color: var(--green-deep); border-style: solid; }
 
-.btn-float-agendar {
-  flex: 1;
+.btn-rota.done { background: rgba(74,144,217,.08); border-color: var(--blue-pin); color: var(--blue-pin); border-style: solid; }
+
+/* ─── SUBMIT ─────────────────────────────────────────────── */
+.btn-submit {
+  width: 100%;
+  margin-top: 4px;
+  padding: 18px 24px;
   background: var(--green-deep);
   color: white;
   border-radius: 100px;
@@ -957,48 +468,510 @@ footer {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  box-shadow: 0 4px 16px rgba(26,46,34,.2);
-  transition: all .2s var(--t);
+  transition: all .3s var(--t);
+  box-shadow: 0 4px 20px rgba(26,46,34,.22);
 }
 
-.btn-float-agendar:hover { background: var(--green-mid); }
+.btn-submit:hover {
+  background: var(--green-mid);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 28px rgba(26,46,34,.28);
+}
 
-.wpp-desktop-btn { display: none; }
+.btn-submit:active { transform: translateY(0); }
+
+.form-footer {
+  margin-top: 14px;
+  font-size: 11.5px;
+  color: var(--text-muted);
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* ═══ LOYALTY CARD ═════════════════════════════════════════ */
+.loyalty-card {
+  background: var(--surface);
+  border-radius: var(--r-lg);
+  padding: 20px;
+  margin-top: 16px;
+  box-shadow: var(--s-sm);
+  border: 1px solid rgba(26,46,34,.04);
+}
+
+.loyalty-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.loyalty-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.loyalty-count {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.loyalty-dots {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+}
+
+.loyalty-dot {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--surface-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  color: var(--text-muted);
+  transition: all .3s var(--t);
+}
+
+.loyalty-dot.filled {
+  background: var(--green-deep);
+  border-color: var(--green-deep);
+  color: white;
+}
+
+.loyalty-dot.reward {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: white;
+  font-size: 12px;
+}
+
+.loyalty-msg {
+  margin-top: 12px;
+  font-size: 12px;
+  color: var(--text-soft);
+  text-align: center;
+  line-height: 1.5;
+}
+
+.loyalty-msg strong { color: var(--green-light); font-weight: 600; }
+
+/* ═══ ANDRE SIDE PANEL (desktop) / BELOW (mobile) ═════════ */
+.andre-panel { margin-top: 48px; }
 
 @media (min-width: 768px) {
-  .wpp-desktop-btn {
+  .andre-panel { margin-top: 0; }
+}
+
+.andre-card {
+  background: var(--surface);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  box-shadow: var(--s-md);
+  border: 1px solid rgba(26,46,34,.04);
+}
+
+.andre-foto {
+  width: 100%;
+  aspect-ratio: 4/3;
+  background: linear-gradient(150deg, var(--green-mist) 0%, var(--surface-2) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.andre-foto-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-muted);
+  font-size: 12px;
+  position: relative;
+}
+
+.andre-foto-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--s-sm);
+}
+
+.andre-info {
+  padding: 28px 24px 32px;
+}
+
+.andre-name {
+  font-family: var(--font-d);
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.andre-role {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+.andre-bio {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--text-soft);
+  margin-bottom: 20px;
+}
+
+.andre-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.andre-stat {
+  text-align: center;
+  padding: 12px 6px;
+  background: var(--bg);
+  border-radius: var(--r-sm);
+}
+
+.andre-stat-num {
+  font-family: var(--font-d);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--text);
+  line-height: 1;
+  margin-bottom: 2px;
+}
+
+.andre-stat-label {
+  font-size: 10px;
+  color: var(--text-muted);
+  letter-spacing: .02em;
+}
+
+.andre-carro {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  padding: 10px 14px;
+  background: var(--bg);
+  border-radius: 100px;
+  font-size: 12px;
+  color: var(--text-soft);
+  font-weight: 500;
+}
+
+/* ═══ SERVICES SECTION ═════════════════════════════════════ */
+#servicos {
+  padding: 72px 20px;
+  max-width: 540px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  #servicos { max-width: 920px; padding: 96px 40px; }
+}
+
+.servicos-header {
+  margin-bottom: 32px;
+}
+
+.servicos-header h2 {
+  font-family: var(--font-d);
+  font-size: clamp(24px, 6vw, 34px);
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--text);
+  letter-spacing: -.01em;
+  margin-bottom: 8px;
+}
+
+.servicos-header h2 em { font-style: italic; color: var(--green-light); }
+
+.servicos-header p {
+  font-size: 14px;
+  color: var(--text-soft);
+  line-height: 1.6;
+}
+
+.servicos-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+@media (min-width: 480px) { .servicos-grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 900px) { .servicos-grid { grid-template-columns: repeat(3, 1fr); } }
+
+.servico-card {
+  background: var(--surface);
+  border-radius: var(--r-lg);
+  padding: 24px 20px;
+  box-shadow: var(--s-sm);
+  border: 1px solid rgba(26,46,34,.04);
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  transition: all .25s var(--t);
+}
+
+.servico-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--s-md);
+}
+
+.servico-emoji {
+  font-size: 24px;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  background: var(--bg);
+  border-radius: var(--r-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.servico-text h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 3px;
+}
+
+.servico-text p {
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--text-soft);
+}
+
+/* ═══ TARIFAS ══════════════════════════════════════════════ */
+#tarifas {
+  background: var(--green-deep);
+  border-radius: var(--r-xl);
+  margin: 0 16px;
+  overflow: hidden;
+}
+
+.tarifas-inner {
+  padding: 56px 24px;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .tarifas-inner {
+    max-width: 920px;
+    padding: 80px 40px;
+    display: grid;
+    grid-template-columns: 1fr 1.15fr;
+    gap: 56px;
+    align-items: start;
+  }
+}
+
+.tarifas-head h2 {
+  font-family: var(--font-d);
+  font-size: clamp(24px, 6vw, 34px);
+  font-weight: 400;
+  color: white;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  letter-spacing: -.01em;
+}
+
+.tarifas-head h2 em { font-style: italic; color: var(--green-mist); }
+
+.tarifas-head p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(255,255,255,.5);
+}
+
+.tarifas-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 32px;
+}
+
+@media (min-width: 768px) { .tarifas-list { margin-top: 0; } }
+
+.tarifa-row {
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: var(--r-md);
+  padding: 16px 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.tarifa-emoji { font-size: 18px; width: 32px; text-align: center; flex-shrink: 0; }
+.tarifa-info { flex: 1; }
+.tarifa-name { font-size: 13px; font-weight: 600; color: white; }
+.tarifa-hours { font-size: 11px; color: rgba(255,255,255,.4); }
+.tarifa-badge {
+  font-family: var(--font-d);
+  font-size: 18px;
+  color: var(--green-mist);
+  font-weight: 400;
+}
+
+.tarifa-note {
+  margin-top: 20px;
+  padding: 14px 16px;
+  background: rgba(201,168,76,.1);
+  border: 1px solid rgba(201,168,76,.15);
+  border-radius: var(--r-sm);
+  font-size: 12.5px;
+  color: rgba(255,255,255,.55);
+  line-height: 1.5;
+}
+
+.tarifa-note strong { color: var(--gold-light); font-weight: 500; }
+
+/* ═══ FOOTER ═══════════════════════════════════════════════ */
+footer {
+  background: var(--green-deep);
+  padding: 48px 24px calc(100px + env(safe-area-inset-bottom, 0px));
+  text-align: center;
+}
+
+@media (min-width: 768px) { footer { padding: 56px 40px; } }
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.footer-brand-name {
+  font-family: var(--font-b);
+  font-weight: 700;
+  font-size: 18px;
+  color: rgba(255,255,255,.7);
+  letter-spacing: -.03em;
+}
+
+.footer-tagline {
+  font-family: var(--font-d);
+  font-style: italic;
+  font-size: 15px;
+  color: rgba(255,255,255,.35);
+  margin-bottom: 20px;
+}
+
+.footer-info {
+  font-size: 12px;
+  color: rgba(255,255,255,.3);
+  line-height: 1.8;
+}
+
+.footer-info a { color: rgba(255,255,255,.5); transition: color .2s; }
+.footer-info a:hover { color: white; }
+
+/* ═══ FLOATING BAR (MOBILE) ════════════════════════════════ */
+#floating-bar {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 200;
+  padding: 10px 16px calc(14px + env(safe-area-inset-bottom, 0px));
+  background: rgba(244,243,239,.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(26,46,34,.08);
+  display: flex;
+  gap: 8px;
+  transform: translateY(100%);
+  transition: transform .4s var(--t);
+}
+
+#floating-bar.visible { transform: translateY(0); }
+
+@media (min-width: 768px) { #floating-bar { display: none; } }
+
+.btn-float-wpp {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #25D366;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 3px 12px rgba(37,211,102,.3);
+}
+
+.btn-float-main {
+  flex: 1;
+  background: var(--green-deep);
+  color: white;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: background .2s var(--t);
+}
+
+.btn-float-main:hover { background: var(--green-mid); }
+
+/* WhatsApp desktop */
+.wpp-desk {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .wpp-desk {
     display: flex;
     position: fixed;
-    bottom: 32px;
-    right: 32px;
+    bottom: 28px; right: 28px;
     z-index: 200;
-    width: 56px;
-    height: 56px;
+    width: 54px; height: 54px;
     border-radius: 50%;
     background: #25D366;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 20px rgba(37,211,102,.4);
+    box-shadow: 0 4px 18px rgba(37,211,102,.4);
     transition: all .3s var(--t);
     transform: scale(0);
   }
-  .wpp-desktop-btn.visible { transform: scale(1); }
-  .wpp-desktop-btn:hover { transform: scale(1.08); box-shadow: 0 8px 28px rgba(37,211,102,.5); }
+  .wpp-desk.visible { transform: scale(1); }
+  .wpp-desk:hover { transform: scale(1.07); }
 }
 
-/* Scroll reveal */
+/* ═══ SCROLL REVEAL ════════════════════════════════════════ */
 .reveal {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity .7s var(--t), transform .7s var(--t);
+  transform: translateY(16px);
+  transition: opacity .6s var(--t), transform .6s var(--t);
 }
 
 .reveal.in-view { opacity: 1; transform: translateY(0); }
-.reveal-delay-1 { transition-delay: .1s; }
-.reveal-delay-2 { transition-delay: .2s; }
-.reveal-delay-3 { transition-delay: .3s; }
-.reveal-delay-4 { transition-delay: .4s; }
+.rd1 { transition-delay: .05s; }
+.rd2 { transition-delay: .1s; }
+.rd3 { transition-delay: .15s; }
+.rd4 { transition-delay: .2s; }
 
+/* ═══ MOTION PREF ══════════════════════════════════════════ */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: .01ms !important;
@@ -1009,520 +982,427 @@ footer {
 </head>
 <body>
 
-<!--
-═══════════════════════════════════════════════════════════════
-  LOGO TELEVO — TEMPLATE
-  · Símbolo TL forma uma estrada (vertical do T curva e vira L horizontal)
-  · Pin azul = destino, no fim da curva
-  · "evo" posicionado ACIMA, alinhado com a horizontal do T (não com o L)
-  · Espaço claro entre o símbolo e o "evo" para evitar leitura "Ivo/Levo"
-═══════════════════════════════════════════════════════════════
--->
-
-<!-- ─── NAVBAR ─────────────────────────────────────────────── -->
+<!-- ═══ NAVBAR ═══════════════════════════════════════════════ -->
 <nav id="navbar">
-  <div class="nav-logo">
-    <svg class="logo-svg" width="96" height="34" viewBox="0 0 180 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="TELEVO">
-      <!-- T-top + estrada (T→L) -->
-      <line x1="6" y1="10" x2="50" y2="10" stroke="#1a2e22" stroke-width="9.5" stroke-linecap="round"/>
-      <path d="M 28 10 L 28 32 Q 28 44 38 44 L 56 44" stroke="#1a2e22" stroke-width="9.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <a href="#" class="nav-brand" aria-label="TELEVO">
+    <!-- Logo Option C: ícone TL + nome por extenso -->
+    <svg width="28" height="28" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <!-- T-top -->
+      <line x1="8" y1="10" x2="34" y2="10" stroke="#1a2e22" stroke-width="6.5" stroke-linecap="round"/>
+      <!-- Estrada T→L -->
+      <path d="M 21 10 L 21 26 Q 21 36 30 36 L 38 36" stroke="#1a2e22" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
       <!-- Pin -->
-      <circle cx="62" cy="44" r="6" fill="url(#pinNav)"/>
-      <circle cx="60.2" cy="42.5" r="1.7" fill="rgba(255,255,255,.55)"/>
-      <!-- "evo" no topo, alinhado com T-top -->
-      <text x="80" y="22" font-family="DM Sans, system-ui, sans-serif" font-weight="700" font-size="24" fill="#1a2e22" letter-spacing="-0.8">evo</text>
+      <circle cx="42" cy="36" r="4.5" fill="url(#pinIcon)"/>
+      <circle cx="40.8" cy="34.8" r="1.3" fill="rgba(255,255,255,.55)"/>
       <defs>
-        <radialGradient id="pinNav" cx="35%" cy="35%" r="65%">
+        <radialGradient id="pinIcon" cx="35%" cy="35%" r="65%">
           <stop offset="0%" stop-color="#6eb0f0"/>
           <stop offset="100%" stop-color="#3a7bc8"/>
         </radialGradient>
       </defs>
     </svg>
-  </div>
+    <span class="nav-brand-name">TELEVO</span>
+  </a>
 
-  <div class="nav-cta">
-    <a href="#agendar" class="btn-nav">
-      Agendar viagem
-      <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
-        <path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
+  <div class="nav-right">
+    <a href="https://wa.me/5548984049856" class="btn-nav-wpp" target="_blank" rel="noopener" aria-label="WhatsApp">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.535 5.858L.057 23.928a.5.5 0 00.609.61l6.162-1.521A11.942 11.942 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.027-1.382l-.36-.214-3.733.921.951-3.642-.234-.374A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z" fill-rule="evenodd"/></svg>
     </a>
+    <a href="#booking" class="btn-nav-call">Agendar viagem</a>
   </div>
 </nav>
 
-<!-- ─── HERO ─────────────────────────────────────────────────── -->
-<section id="hero">
-  <div class="hero-stage">
+<!-- ═══ HERO = BOOKING ══════════════════════════════════════ -->
+<section id="booking">
+  <div class="trust-bar reveal">
+    <div class="trust-chip"><span class="trust-chip-icon">✅</span> 6+ anos na estrada</div>
+    <div class="trust-chip"><span class="trust-chip-icon">🚗</span> 40 mil viagens</div>
+    <div class="trust-chip"><span class="trust-chip-icon">📅</span> Todos os dias</div>
+  </div>
 
-    <!-- Fase 1: "te levo" em texto -->
-    <div class="phase-text" id="phaseText">te levo<span style="opacity:.5;">.</span></div>
+  <div class="booking-header reveal rd1">
+    <h1>Pra onde eu <em>te levo?</em></h1>
+    <p>Escolha dia, horário e endereço. Eu confirmo em minutos pelo WhatsApp.</p>
+  </div>
 
-    <!-- Fase 2: logo + frase rotativa -->
-    <div class="phase-logo" id="phaseLogo">
-      <svg class="logo-svg" width="260" height="86" viewBox="0 0 260 90" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="TELEVO">
-        <!-- T-top -->
-        <line x1="10" y1="16" x2="76" y2="16" stroke="white" stroke-width="13" stroke-linecap="round"/>
-        <!-- Estrada T→L -->
-        <path d="M 43 16 L 43 50 Q 43 66 58 66 L 86 66" stroke="white" stroke-width="13" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        <!-- Pin azul -->
-        <circle cx="95" cy="66" r="9" fill="url(#pinHero)"/>
-        <circle cx="92" cy="63" r="2.5" fill="rgba(255,255,255,.55)"/>
-        <!-- "evo" no topo, alinhado com T-top -->
-        <text x="124" y="34" font-family="DM Sans, system-ui, sans-serif" font-weight="700" font-size="38" fill="white" letter-spacing="-1.2">evo</text>
-        <defs>
-          <radialGradient id="pinHero" cx="35%" cy="35%" r="65%">
-            <stop offset="0%" stop-color="#8ecff5"/>
-            <stop offset="100%" stop-color="#3a7bc8"/>
-          </radialGradient>
-        </defs>
-      </svg>
+  <div class="booking-layout">
 
-      <div class="rotating-line">
-        te levo <span class="rotating-target" id="rotatingTarget">a festas</span>
+    <!-- ── FORM ──────────────────────────────────────────── -->
+    <div>
+      <div class="form-card reveal rd2">
+
+        <!-- Quando? -->
+        <div class="field-block">
+          <div class="field-label"><span class="field-label-text">Quando?</span></div>
+          <div class="date-scroller" id="dateScroller"></div>
+        </div>
+
+        <!-- Que horas? -->
+        <div class="field-block">
+          <div class="field-label">
+            <span class="field-label-text">Que horas?</span>
+            <span class="field-hint">sujeito a confirmação</span>
+          </div>
+          <div class="time-grid-wrap">
+            <div class="time-grid" id="timeGrid"></div>
+          </div>
+        </div>
+
+        <!-- Onde eu te busco? -->
+        <div class="field-block">
+          <div class="field-label"><span class="field-label-text">Onde eu te busco?</span></div>
+          <input type="text" class="text-input" id="origemInput" placeholder="Endereço completo ou ponto de referência" autocomplete="off">
+        </div>
+
+        <!-- Onde eu te levo? -->
+        <div class="field-block">
+          <div class="field-label"><span class="field-label-text">Onde eu te levo?</span></div>
+          <input type="text" class="text-input" id="destinoInput" placeholder="Lugar + endereço" autocomplete="off">
+          <button class="btn-rota" id="btnRota" type="button" onclick="abrirRota()">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="currentColor"/></svg>
+            Ver rota no Google Maps
+          </button>
+        </div>
+
+        <!-- Como prefere pagar? -->
+        <div class="field-block">
+          <div class="field-label"><span class="field-label-text">Como prefere pagar?</span></div>
+          <div class="payment-grid" id="paymentGrid">
+            <button type="button" class="payment-btn" data-pay="Pix"><span class="pay-icon">⚡</span><span class="pay-text">Pix</span></button>
+            <button type="button" class="payment-btn" data-pay="Dinheiro"><span class="pay-icon">💵</span><span class="pay-text">Dinheiro</span></button>
+            <button type="button" class="payment-btn" data-pay="Cartão"><span class="pay-icon">💳</span><span class="pay-text">Cartão</span></button>
+          </div>
+        </div>
+
+        <!-- Como posso te chamar? -->
+        <div class="field-block">
+          <div class="field-label"><span class="field-label-text">Como posso te chamar?</span></div>
+          <input type="text" class="text-input" id="nomeInput" placeholder="Seu nome ou apelido" autocomplete="name">
+        </div>
+
+        <button class="btn-submit" id="btnSubmit" onclick="enviarWhatsApp()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Agendar pelo WhatsApp
+        </button>
+
+        <p class="form-footer">Nenhum valor é cobrado aqui. Tudo é combinado direto com o André.</p>
+      </div>
+
+      <!-- Loyalty card -->
+      <div class="loyalty-card reveal rd3" id="loyaltyCard">
+        <div class="loyalty-header">
+          <span class="loyalty-title">🎖️ Cartão fidelidade</span>
+          <span class="loyalty-count" id="loyaltyCount">0 de 10</span>
+        </div>
+        <div class="loyalty-dots" id="loyaltyDots"></div>
+        <p class="loyalty-msg" id="loyaltyMsg">A cada <strong>10 corridas</strong>, você ganha desconto na próxima. O André confirma pelo WhatsApp.</p>
+      </div>
+    </div>
+
+    <!-- ── ANDRÉ PANEL ───────────────────────────────────── -->
+    <div class="andre-panel reveal rd3">
+      <div class="andre-card">
+        <div class="andre-foto">
+          <div class="andre-foto-placeholder">
+            <div class="andre-foto-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#4a7c5f" stroke-width="1.5"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="#4a7c5f" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+            <span style="font-size:11px">Foto em breve</span>
+          </div>
+        </div>
+
+        <div class="andre-info">
+          <h2 class="andre-name">André Luiz</h2>
+          <p class="andre-role">Motorista particular · Florianópolis</p>
+          <p class="andre-bio">Você sabe exatamente quem te busca e quem te leva. Sem app, sem surpresa — combinado direto pelo WhatsApp, do jeito que tem que ser.</p>
+
+          <div class="andre-stats">
+            <div class="andre-stat"><div class="andre-stat-num">+40k</div><div class="andre-stat-label">viagens</div></div>
+            <div class="andre-stat"><div class="andre-stat-num">6+</div><div class="andre-stat-label">anos</div></div>
+            <div class="andre-stat"><div class="andre-stat-num">7</div><div class="andre-stat-label">dias/sem</div></div>
+          </div>
+
+          <div class="andre-carro"><span>🚗</span> Fiat Argo 2023 · ar-condicionado, conforto</div>
+        </div>
       </div>
     </div>
 
   </div>
 </section>
 
-<main>
-
-<!-- ─── ANDRÉ ─────────────────────────────────────────────────── -->
-<section id="andre">
-  <div class="andre-inner">
-    <div class="foto-placeholder reveal">
-      <div class="foto-icon">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <circle cx="12" cy="8" r="4" stroke="#4a7c5f" stroke-width="1.5"/>
-          <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="#4a7c5f" stroke-width="1.5" stroke-linecap="round"/>
-        </svg>
-      </div>
-      <span style="font-size:12px; color: var(--text-muted); max-width: 140px; text-align:center; line-height:1.5;">
-        Foto do André<br>em breve
-      </span>
-    </div>
-
-    <div class="andre-text">
-      <div class="eyebrow reveal">Seu motorista</div>
-      <h2 class="reveal reveal-delay-1">Olá, eu sou o <em>André.</em></h2>
-      <p class="reveal reveal-delay-2">
-        Motorista particular em Florianópolis com mais de 6 anos de experiência. Aqui você não embarca com um desconhecido — você sabe exatamente quem te leva.
-      </p>
-      <p class="reveal reveal-delay-3">
-        Te busco no colégio, te levo a festas, faço viagens, aeroporto, qualquer destino. Tudo acertado direto pelo WhatsApp, na hora que for melhor pra você.
-      </p>
-
-      <div class="carro-badge reveal reveal-delay-3">
-        <span>🚗</span>
-        <span>Fiat Argo 2023 · ar-condicionado, conforto, pontualidade</span>
-      </div>
-
-      <div class="stats-row reveal reveal-delay-4">
-        <div class="stat-item"><div class="stat-num">+40k</div><div class="stat-label">viagens realizadas</div></div>
-        <div class="stat-item"><div class="stat-num">6+</div><div class="stat-label">anos de experiência</div></div>
-        <div class="stat-item"><div class="stat-num">7×</div><div class="stat-label">dias por semana</div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── SERVIÇOS ──────────────────────────────────────────────── -->
+<!-- ═══ SERVIÇOS ════════════════════════════════════════════ -->
 <section id="servicos">
-  <div class="servicos-inner">
-    <div class="eyebrow reveal">O que eu faço</div>
-    <h2 class="section-title reveal reveal-delay-1">Onde você precisar,<br><em>eu te levo.</em></h2>
-    <p class="section-subtitle reveal reveal-delay-2">Atendo Florianópolis e região. Para viagens mais longas, só combinar o preço.</p>
+  <div class="servicos-header reveal">
+    <h2>Onde você precisar, <em>eu te levo.</em></h2>
+    <p>Florianópolis e região. Pra viagens longas, a gente combina o valor antes.</p>
+  </div>
 
-    <div class="servicos-grid">
-      <div class="servico-card reveal"><div class="servico-icon">✈️</div><h3>Aeroporto</h3><p>Ida e volta com pontualidade. Acompanho voos com antecedência.</p></div>
-      <div class="servico-card reveal reveal-delay-1"><div class="servico-icon">🎉</div><h3>Festas & eventos</h3><p>Te levo e te busco quando precisar. Você aproveita, eu cuido do trajeto.</p></div>
-      <div class="servico-card reveal reveal-delay-2"><div class="servico-icon">🎒</div><h3>Escola & colégio</h3><p>Busca e entrega dos filhos com segurança e horário combinado.</p></div>
-      <div class="servico-card reveal reveal-delay-3"><div class="servico-icon">🗺️</div><h3>Viagens</h3><p>Para qualquer destino. Orçamento conversado pelo WhatsApp.</p></div>
-      <div class="servico-card reveal reveal-delay-1"><div class="servico-icon">🏥</div><h3>Saúde & consultas</h3><p>Médico, clínica, hospital. Com calma e sem pressa.</p></div>
-      <div class="servico-card reveal reveal-delay-2"><div class="servico-icon">📦</div><h3>Qualquer destino</h3><p>Supermercado, banco, shopping — onde quiser, tudo bem conversado.</p></div>
-    </div>
+  <div class="servicos-grid">
+    <div class="servico-card reveal"><div class="servico-emoji">✈️</div><div class="servico-text"><h3>Aeroporto</h3><p>Ida e volta com pontualidade. Acompanho o voo pra garantir que te pego na hora certa.</p></div></div>
+    <div class="servico-card reveal rd1"><div class="servico-emoji">🎉</div><div class="servico-text"><h3>Festas e eventos</h3><p>Te levo e te busco na hora que quiser. Você aproveita a noite sem preocupação.</p></div></div>
+    <div class="servico-card reveal rd2"><div class="servico-emoji">🎒</div><div class="servico-text"><h3>Buscar seu filho na escola</h3><p>Horário fixo, sempre o mesmo motorista. Tranquilidade pra você e segurança pros pequenos.</p></div></div>
+    <div class="servico-card reveal rd3"><div class="servico-emoji">🗺️</div><div class="servico-text"><h3>Viagens</h3><p>Litoral, serra, cidades vizinhas. A gente combina o preço antes e eu cuido da estrada.</p></div></div>
+    <div class="servico-card reveal rd1"><div class="servico-emoji">🏥</div><div class="servico-text"><h3>Consultas e exames</h3><p>Te levo ao médico, espero e te trago de volta. Sem pressa, no seu tempo.</p></div></div>
+    <div class="servico-card reveal rd2"><div class="servico-emoji">📦</div><div class="servico-text"><h3>Onde mais precisar</h3><p>Mercado, banco, shopping, cartório. Qualquer destino, é só combinar.</p></div></div>
   </div>
 </section>
 
-<!-- ─── TARIFAS ────────────────────────────────────────────────── -->
+<!-- ═══ TARIFAS ═════════════════════════════════════════════ -->
 <section id="tarifas">
   <div class="tarifas-inner">
     <div class="tarifas-head">
-      <div class="eyebrow reveal">Valores</div>
-      <h2 class="reveal reveal-delay-1">Transparência <em>desde o início.</em></h2>
-      <p class="reveal reveal-delay-2">Os preços variam por horário. Tudo combinado antes da corrida, sem surpresa.</p>
+      <h2 class="reveal">Sem surpresa <em>no valor.</em></h2>
+      <p class="reveal rd1">Os preços variam por horário. A gente combina tudo antes — você sabe exatamente quanto vai pagar.</p>
     </div>
 
     <div class="tarifas-list">
-      <div class="tarifa-item reveal">
-        <div class="tarifa-icon">☀️</div>
-        <div class="tarifa-info"><div class="tarifa-periodo">Tarifa normal</div><div class="tarifa-horario">08h às 18h · Seg a Sex</div></div>
-        <div class="tarifa-taxa">Base</div>
-      </div>
-      <div class="tarifa-item reveal reveal-delay-1">
-        <div class="tarifa-icon">🌆</div>
-        <div class="tarifa-info"><div class="tarifa-periodo">Noturno</div><div class="tarifa-horario">18h à meia-noite</div></div>
-        <div class="tarifa-taxa">+30%</div>
-      </div>
-      <div class="tarifa-item reveal reveal-delay-2">
-        <div class="tarifa-icon">🌙</div>
-        <div class="tarifa-info"><div class="tarifa-periodo">Madrugada</div><div class="tarifa-horario">00h às 08h</div></div>
-        <div class="tarifa-taxa">+50%</div>
-      </div>
-      <div class="tarifa-item reveal reveal-delay-3">
-        <div class="tarifa-icon">🗓️</div>
-        <div class="tarifa-info"><div class="tarifa-periodo">Fim de semana</div><div class="tarifa-horario">Sábado e domingo</div></div>
-        <div class="tarifa-taxa">+30%</div>
-      </div>
-      <div class="tarifa-nota reveal reveal-delay-4">
-        <strong>Orçamento direto:</strong> Para viagens ou trajetos fora do padrão, me manda mensagem pelo WhatsApp — respondo na hora.
-      </div>
+      <div class="tarifa-row reveal"><div class="tarifa-emoji">☀️</div><div class="tarifa-info"><div class="tarifa-name">Horário normal</div><div class="tarifa-hours">08h às 18h · seg a sex</div></div><div class="tarifa-badge">Base</div></div>
+      <div class="tarifa-row reveal rd1"><div class="tarifa-emoji">🌆</div><div class="tarifa-info"><div class="tarifa-name">Noturno</div><div class="tarifa-hours">18h à meia-noite</div></div><div class="tarifa-badge">+30%</div></div>
+      <div class="tarifa-row reveal rd2"><div class="tarifa-emoji">🌙</div><div class="tarifa-info"><div class="tarifa-name">Madrugada</div><div class="tarifa-hours">00h às 08h</div></div><div class="tarifa-badge">+50%</div></div>
+      <div class="tarifa-row reveal rd3"><div class="tarifa-emoji">🗓️</div><div class="tarifa-info"><div class="tarifa-name">Fim de semana</div><div class="tarifa-hours">sábado e domingo</div></div><div class="tarifa-badge">+30%</div></div>
+      <div class="tarifa-note reveal rd4"><strong>Viagem especial?</strong> Me manda mensagem pelo WhatsApp e eu te passo o orçamento.</div>
     </div>
   </div>
 </section>
 
-<!-- ─── FORM AGENDAMENTO ──────────────────────────────────────── -->
-<section id="agendar">
-  <div class="agendar-inner">
-    <div class="eyebrow reveal">Agendar</div>
-    <h2 class="form-title reveal reveal-delay-1">Vamos <em>combinar</em> a sua viagem.</h2>
-    <p class="form-subtitle reveal reveal-delay-2">Preencha os passos abaixo. Sua solicitação chega direto no WhatsApp do André.</p>
-
-    <div class="field-block reveal reveal-delay-2">
-      <div class="field-label">
-        <span class="field-label-text"><span class="field-num">01</span> Data</span>
-      </div>
-      <div class="date-scroller" id="dateScroller"></div>
-    </div>
-
-    <div class="field-block reveal reveal-delay-2">
-      <div class="field-label">
-        <span class="field-label-text"><span class="field-num">02</span> Horário</span>
-        <span class="field-hint">sujeito a confirmação do motorista</span>
-      </div>
-      <div class="time-grid-wrapper">
-        <div class="time-grid" id="timeGrid"></div>
-      </div>
-    </div>
-
-    <div class="field-block reveal reveal-delay-2">
-      <div class="field-label">
-        <span class="field-label-text"><span class="field-num">03</span> Origem</span>
-      </div>
-      <input type="text" class="text-input" id="origemInput" placeholder="De onde você sai (endereço completo)" autocomplete="off">
-    </div>
-
-    <div class="field-block reveal reveal-delay-2">
-      <div class="field-label">
-        <span class="field-label-text"><span class="field-num">04</span> Destino</span>
-      </div>
-      <input type="text" class="text-input" id="destinoInput" placeholder="Pra onde você vai (lugar + endereço)" autocomplete="off">
-
-      <button class="btn-map-preview" id="btnMapPreview" type="button" onclick="previewRota()">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="currentColor"/>
-        </svg>
-        Ver rota no mapa
-      </button>
-    </div>
-
-    <div class="field-block reveal reveal-delay-2">
-      <div class="field-label">
-        <span class="field-label-text"><span class="field-num">05</span> Pagamento</span>
-      </div>
-      <div class="payment-grid">
-        <button type="button" class="payment-option" data-payment="Pix"><span class="payment-icon">⚡</span><span class="payment-label">Pix</span></button>
-        <button type="button" class="payment-option" data-payment="Dinheiro"><span class="payment-icon">💵</span><span class="payment-label">Dinheiro</span></button>
-        <button type="button" class="payment-option" data-payment="Cartão"><span class="payment-icon">💳</span><span class="payment-label">Cartão</span></button>
-      </div>
-    </div>
-
-    <div class="field-block reveal reveal-delay-2">
-      <div class="field-label">
-        <span class="field-label-text"><span class="field-num">06</span> Seu nome</span>
-      </div>
-      <input type="text" class="text-input" id="nomeInput" placeholder="Como o André deve te chamar" autocomplete="name">
-    </div>
-
-    <button class="btn-agendar reveal reveal-delay-2" onclick="enviarWhatsApp()">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      Enviar pedido pelo WhatsApp
-    </button>
-
-    <p class="form-disclaimer reveal reveal-delay-2">
-      Nenhum valor é cobrado no site. Tudo é combinado direto com o André pelo WhatsApp.
-    </p>
-  </div>
-</section>
-
-</main>
-
-<!-- ─── RODAPÉ ─────────────────────────────────────────────────── -->
+<!-- ═══ FOOTER ══════════════════════════════════════════════ -->
 <footer>
-  <div class="footer-logo">
-    <svg class="logo-svg" width="130" height="44" viewBox="0 0 260 90" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="TELEVO">
-      <line x1="10" y1="16" x2="76" y2="16" stroke="rgba(255,255,255,.65)" stroke-width="13" stroke-linecap="round"/>
-      <path d="M 43 16 L 43 50 Q 43 66 58 66 L 86 66" stroke="rgba(255,255,255,.65)" stroke-width="13" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-      <circle cx="95" cy="66" r="9" fill="url(#pinFooter)"/>
-      <text x="124" y="34" font-family="DM Sans, system-ui, sans-serif" font-weight="700" font-size="38" fill="rgba(255,255,255,.65)" letter-spacing="-1.2">evo</text>
-      <defs>
-        <radialGradient id="pinFooter" cx="35%" cy="35%" r="65%">
-          <stop offset="0%" stop-color="#6eb0f0"/>
-          <stop offset="100%" stop-color="#3a7bc8"/>
-        </radialGradient>
-      </defs>
-    </svg>
+  <div class="footer-brand">
+    <svg width="22" height="22" viewBox="0 0 48 48" fill="none"><line x1="8" y1="10" x2="34" y2="10" stroke="rgba(255,255,255,.6)" stroke-width="6.5" stroke-linecap="round"/><path d="M 21 10 L 21 26 Q 21 36 30 36 L 38 36" stroke="rgba(255,255,255,.6)" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="42" cy="36" r="4.5" fill="url(#pinF)"/><defs><radialGradient id="pinF" cx="35%" cy="35%" r="65%"><stop offset="0%" stop-color="#6eb0f0"/><stop offset="100%" stop-color="#3a7bc8"/></radialGradient></defs></svg>
+    <span class="footer-brand-name">TELEVO</span>
   </div>
   <p class="footer-tagline">eu te levo.</p>
   <div class="footer-info">
-    <p>Florianópolis, SC &nbsp;·&nbsp; Segunda a domingo</p>
-    <p><a href="https://wa.me/5548984049856">WhatsApp: (48) 98404‑9856</a></p>
-    <p style="margin-top:18px; font-size:11px; color:rgba(255,255,255,.22);">© 2025 TELEVO · Desenvolvido por Phosphoros Studio</p>
+    <p>Florianópolis, SC · Segunda a domingo</p>
+    <p><a href="https://wa.me/5548984049856">WhatsApp: (48) 98404-9856</a></p>
+    <p style="margin-top:16px;font-size:10px;color:rgba(255,255,255,.18)">© 2025 TELEVO · por Phosphoros Studio</p>
   </div>
 </footer>
 
-<!-- ─── BARRA FLUTUANTE MOBILE ─────────────────────────────────── -->
+<!-- ═══ FLOATING BAR ════════════════════════════════════════ -->
 <div id="floating-bar">
   <a href="https://wa.me/5548984049856" class="btn-float-wpp" target="_blank" rel="noopener" aria-label="WhatsApp">
-    <svg width="26" height="26" viewBox="0 0 24 24" fill="white">
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-      <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.535 5.858L.057 23.928a.5.5 0 00.609.61l6.162-1.521A11.942 11.942 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.027-1.382l-.36-.214-3.733.921.951-3.642-.234-.374A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z" fill-rule="evenodd"/>
-    </svg>
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.535 5.858L.057 23.928a.5.5 0 00.609.61l6.162-1.521A11.942 11.942 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.027-1.382l-.36-.214-3.733.921.951-3.642-.234-.374A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z" fill-rule="evenodd"/></svg>
   </a>
-  <a href="#agendar" class="btn-float-agendar">Agendar viagem</a>
+  <a href="#booking" class="btn-float-main">Agendar viagem</a>
 </div>
 
-<a href="https://wa.me/5548984049856" class="wpp-desktop-btn" id="wppDesktop" target="_blank" rel="noopener" aria-label="WhatsApp">
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
-    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.535 5.858L.057 23.928a.5.5 0 00.609.61l6.162-1.521A11.942 11.942 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.027-1.382l-.36-.214-3.733.921.951-3.642-.234-.374A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z" fill-rule="evenodd"/>
-  </svg>
+<a href="https://wa.me/5548984049856" class="wpp-desk" id="wppDesk" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.535 5.858L.057 23.928a.5.5 0 00.609.61l6.162-1.521A11.942 11.942 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.027-1.382l-.36-.214-3.733.921.951-3.642-.234-.374A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z" fill-rule="evenodd"/></svg>
 </a>
 
+<!-- ═══ SCRIPT ══════════════════════════════════════════════ -->
 <script>
-/* ═══ HERO ANIMATION TIMELINE ════════════════════════════════
-   0.0s — start
-   0.3s — "te levo" fade-in
-   1.8s — "te levo" fade-out
-   2.2s — logo fade-in
-   2.8s — frase rotativa fade-in (começa rodando)
-   5.0s — navbar revelada
-   5.4s — fase logo fade-out
-   5.8s — scroll automático para próxima seção
-═══════════════════════════════════════════════════════════════ */
+(function() {
+'use strict';
 
-const navbar = document.getElementById('navbar');
-const rotatingTarget = document.getElementById('rotatingTarget');
+/* ── UTILS ─────────────────────────────────────────────── */
+const $ = s => document.querySelector(s);
+const $$ = s => document.querySelectorAll(s);
 
-const frasesRotativas = [
-  'a festas',
-  'à escola',
-  'ao aeroporto',
-  'onde você quiser'
-];
+/* ── STATE ─────────────────────────────────────────────── */
+const S = { date: null, time: null, payment: null };
 
-let userScrolled = false;
+/* ── LOYALTY (localStorage, degrades gracefully) ───────── */
+const LOYALTY_KEY = 'televo_trips';
+const LOYALTY_GOAL = 10;
 
-window.addEventListener('scroll', () => {
-  userScrolled = true;
-}, { once: true, passive: true });
-
-// Rotação de frases
-let fraseIndex = 0;
-let fraseInterval;
-
-function iniciarRotacao() {
-  fraseInterval = setInterval(() => {
-    rotatingTarget.style.opacity = '0';
-    setTimeout(() => {
-      fraseIndex = (fraseIndex + 1) % frasesRotativas.length;
-      rotatingTarget.textContent = frasesRotativas[fraseIndex];
-      rotatingTarget.style.opacity = '1';
-    }, 280);
-  }, 850);
+function getTrips() {
+  try { return parseInt(localStorage.getItem(LOYALTY_KEY)) || 0; }
+  catch { return 0; }
 }
 
-// Timeline
-window.addEventListener('load', () => {
-  // 2.8s — começa a rotacionar
-  setTimeout(iniciarRotacao, 2800);
+function addTrip() {
+  try {
+    const n = getTrips() + 1;
+    localStorage.setItem(LOYALTY_KEY, n);
+    return n;
+  } catch { return 0; }
+}
 
-  // 5.0s — navbar aparece
-  setTimeout(() => navbar.classList.add('revealed'), 5000);
+function renderLoyalty() {
+  const trips = getTrips();
+  const dots = $('#loyaltyDots');
+  const count = $('#loyaltyCount');
+  const msg = $('#loyaltyMsg');
+  dots.innerHTML = '';
 
-  // 5.4s — parar rotação
-  setTimeout(() => clearInterval(fraseInterval), 5400);
-
-  // 5.8s — scroll suave para a próxima seção
-  setTimeout(() => {
-    if (!userScrolled) {
-      const andre = document.getElementById('andre');
-      const target = andre.offsetTop;
-      window.scrollTo({ top: target, behavior: 'smooth' });
+  for (let i = 1; i <= LOYALTY_GOAL; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'loyalty-dot';
+    if (i <= trips) dot.classList.add('filled');
+    if (i === LOYALTY_GOAL && trips >= LOYALTY_GOAL) {
+      dot.classList.remove('filled');
+      dot.classList.add('reward');
+      dot.textContent = '🎁';
+    } else {
+      dot.textContent = i;
     }
-  }, 5800);
-});
+    dots.appendChild(dot);
+  }
 
-/* ═══ SCROLL BEHAVIOR ═══════════════════════════════════════ */
-const floatBar   = document.getElementById('floating-bar');
-const wppDesktop = document.getElementById('wppDesktop');
+  count.textContent = `${Math.min(trips, LOYALTY_GOAL)} de ${LOYALTY_GOAL}`;
 
-window.addEventListener('scroll', () => {
-  const y = window.scrollY;
-  if (y > 60) navbar.classList.add('scrolled'); else navbar.classList.remove('scrolled');
-  if (y > 200) floatBar.classList.add('visible'); else floatBar.classList.remove('visible');
-  if (y > 300) wppDesktop.classList.add('visible'); else wppDesktop.classList.remove('visible');
-}, { passive: true });
+  if (trips >= LOYALTY_GOAL) {
+    msg.innerHTML = '🎉 Parabéns! Você completou o cartão. <strong>Mencione o desconto ao André na próxima corrida!</strong>';
+  } else if (trips > 0) {
+    const falta = LOYALTY_GOAL - trips;
+    msg.innerHTML = `Faltam <strong>${falta} corrida${falta > 1 ? 's' : ''}</strong> pro seu desconto. Continue usando o TELEVO!`;
+  }
+}
 
-/* ═══ SCROLL REVEAL ═════════════════════════════════════════ */
-const reveals = document.querySelectorAll('.reveal');
-const obs = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('in-view');
-      obs.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-reveals.forEach(el => obs.observe(el));
+/* ── DATE CHIPS ────────────────────────────────────────── */
+const DIAS = ['DOM','SEG','TER','QUA','QUI','SEX','SÁB'];
+const MESES = ['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
+const scroller = $('#dateScroller');
 
-/* ═══ FORM STATE ════════════════════════════════════════════ */
-const state = { date: null, time: null, payment: null };
-
-const dateScroller = document.getElementById('dateScroller');
-const DIAS_SEMANA = ['DOM', 'SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SÁB'];
-const MESES_ABREV = ['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
-
-function gerarChipsData() {
-  const hoje = new Date();
-  hoje.setHours(0, 0, 0, 0);
+function buildDates() {
+  const hoje = new Date(); hoje.setHours(0,0,0,0);
   for (let i = 0; i < 14; i++) {
-    const dia = new Date(hoje);
-    dia.setDate(hoje.getDate() + i);
-    let label;
-    if (i === 0)      label = 'HOJE';
-    else if (i === 1) label = 'AMANHÃ';
-    else              label = DIAS_SEMANA[dia.getDay()];
+    const d = new Date(hoje); d.setDate(hoje.getDate() + i);
+    let label = i === 0 ? 'HOJE' : i === 1 ? 'AMANHÃ' : DIAS[d.getDay()];
     const chip = document.createElement('button');
     chip.type = 'button';
     chip.className = 'date-chip';
-    chip.dataset.date = dia.toISOString();
-    chip.innerHTML = `
-      <span class="date-chip-label">${label}</span>
-      <span class="date-chip-num">${dia.getDate()}</span>
-      <span class="date-chip-month">${MESES_ABREV[dia.getMonth()]}</span>
-    `;
-    if (i === 0) { chip.classList.add('selected'); state.date = dia; }
-    chip.addEventListener('click', () => {
-      document.querySelectorAll('.date-chip').forEach(c => c.classList.remove('selected'));
+    chip.dataset.iso = d.toISOString();
+    chip.innerHTML =
+      `<span class="date-chip-weekday">${label}</span>` +
+      `<span class="date-chip-num">${d.getDate()}</span>` +
+      `<span class="date-chip-month">${MESES[d.getMonth()]}</span>`;
+    if (i === 0) { chip.classList.add('selected'); S.date = d; }
+    chip.onclick = () => {
+      $$('.date-chip').forEach(c => c.classList.remove('selected'));
       chip.classList.add('selected');
-      state.date = new Date(chip.dataset.date);
-      atualizarHorariosSurge();
-    });
-    dateScroller.appendChild(chip);
+      S.date = new Date(chip.dataset.iso);
+      updateSurge();
+    };
+    scroller.appendChild(chip);
   }
 }
 
-const timeGrid = document.getElementById('timeGrid');
-function gerarChipsHorario() {
+/* ── TIME CHIPS ────────────────────────────────────────── */
+const grid = $('#timeGrid');
+
+function buildTimes() {
   for (let h = 0; h < 24; h++) {
     for (let m = 0; m < 60; m += 30) {
-      const hh = String(h).padStart(2, '0');
-      const mm = String(m).padStart(2, '0');
-      const horario = `${hh}:${mm}`;
+      const hh = String(h).padStart(2,'0');
+      const mm = String(m).padStart(2,'0');
+      const t = `${hh}:${mm}`;
       const chip = document.createElement('button');
       chip.type = 'button';
       chip.className = 'time-chip';
-      chip.dataset.time = horario;
-      chip.dataset.hour = h;
-      chip.textContent = horario;
-      chip.addEventListener('click', () => {
-        document.querySelectorAll('.time-chip').forEach(c => c.classList.remove('selected'));
+      chip.dataset.time = t;
+      chip.dataset.h = h;
+      chip.textContent = t;
+      chip.onclick = () => {
+        $$('.time-chip').forEach(c => c.classList.remove('selected'));
         chip.classList.add('selected');
-        state.time = horario;
-      });
-      timeGrid.appendChild(chip);
+        S.time = t;
+      };
+      grid.appendChild(chip);
     }
   }
-  atualizarHorariosSurge();
+  updateSurge();
 }
 
-function atualizarHorariosSurge() {
-  if (!state.date) return;
-  const diaSemana = state.date.getDay();
-  const fimDeSemana = diaSemana === 0 || diaSemana === 6;
-  document.querySelectorAll('.time-chip').forEach(chip => {
-    chip.classList.remove('surge-orange', 'surge-red');
-    const h = parseInt(chip.dataset.hour);
-    if (h >= 0 && h < 8) chip.classList.add('surge-red');
-    else if (h >= 18 || fimDeSemana) chip.classList.add('surge-orange');
+function updateSurge() {
+  if (!S.date) return;
+  const dow = S.date.getDay();
+  const fds = dow === 0 || dow === 6;
+  $$('.time-chip').forEach(c => {
+    c.classList.remove('surge-30','surge-50');
+    const h = parseInt(c.dataset.h);
+    if (h >= 0 && h < 8) c.classList.add('surge-50');
+    else if (h >= 18 || fds) c.classList.add('surge-30');
   });
 }
 
-document.querySelectorAll('.payment-option').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.payment-option').forEach(b => b.classList.remove('selected'));
+/* ── PAYMENT ───────────────────────────────────────────── */
+$$('.payment-btn').forEach(btn => {
+  btn.onclick = () => {
+    $$('.payment-btn').forEach(b => b.classList.remove('selected'));
     btn.classList.add('selected');
-    state.payment = btn.dataset.payment;
-  });
+    S.payment = btn.dataset.pay;
+  };
 });
 
-function previewRota() {
-  const origem  = document.getElementById('origemInput').value.trim();
-  const destino = document.getElementById('destinoInput').value.trim();
-  const btn     = document.getElementById('btnMapPreview');
-  if (!origem || !destino) { alert('Preencha a origem e o destino primeiro.'); return; }
-  const url = `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(origem)}&destination=${encodeURIComponent(destino)}&travelmode=driving`;
+/* ── VER ROTA ──────────────────────────────────────────── */
+window.abrirRota = function() {
+  const o = $('#origemInput').value.trim();
+  const d = $('#destinoInput').value.trim();
+  if (!o || !d) return alert('Preencha os endereços de origem e destino.');
+  const url = `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(o)}&destination=${encodeURIComponent(d)}&travelmode=driving`;
   window.open(url, '_blank', 'noopener');
-  btn.classList.add('active');
-  btn.innerHTML = `
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-      <path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    Rota aberta no Google Maps
-  `;
-}
+  const btn = $('#btnRota');
+  btn.classList.add('done');
+  btn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Rota aberta';
+};
 
-function formatarDataLegivel(d) {
-  return d.toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'long' });
-}
+/* ── ENVIAR WHATSAPP ───────────────────────────────────── */
+window.enviarWhatsApp = function() {
+  const nome = $('#nomeInput').value.trim();
+  const orig = $('#origemInput').value.trim();
+  const dest = $('#destinoInput').value.trim();
 
-function enviarWhatsApp() {
-  const nome    = document.getElementById('nomeInput').value.trim();
-  const origem  = document.getElementById('origemInput').value.trim();
-  const destino = document.getElementById('destinoInput').value.trim();
-  if (!state.date)    return alert('Escolha a data da corrida.');
-  if (!state.time)    return alert('Escolha o horário da corrida.');
-  if (!origem)        return alert('Informe o endereço de origem.');
-  if (!destino)       return alert('Informe o endereço de destino.');
-  if (!state.payment) return alert('Escolha a forma de pagamento.');
-  if (!nome)          return alert('Informe seu nome.');
+  if (!S.date)    return alert('Escolha a data.');
+  if (!S.time)    return alert('Escolha o horário.');
+  if (!orig)      return alert('Informe onde te buscar.');
+  if (!dest)      return alert('Informe pra onde ir.');
+  if (!S.payment) return alert('Escolha como pagar.');
+  if (!nome)      return alert('Informe seu nome.');
 
-  const dataFmt = formatarDataLegivel(state.date);
-  const linkRota = `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(origem)}&destination=${encodeURIComponent(destino)}&travelmode=driving`;
+  const dataFmt = S.date.toLocaleDateString('pt-BR', { weekday:'long', day:'numeric', month:'long' });
+  const linkRota = `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(orig)}&destination=${encodeURIComponent(dest)}&travelmode=driving`;
+
+  const trips = addTrip();
+  const loyaltyTag = trips >= LOYALTY_GOAL ? '\n🎖️ *Cliente fidelidade — desconto na corrida!*' : '';
 
   const msg =
-`🔶 *Novo pedido de corrida — TELEVO*
+`${linkRota}
+
+🔶 *Novo pedido de corrida — TeLevo*
 
 🔶 *Cliente:* ${nome}
 🔶 *Data:* ${dataFmt}
-🔶 *Horário:* ${state.time}
-🔶 *Origem:* ${origem}
-🔶 *Destino:* ${destino}
-🔶 *Pagamento:* ${state.payment}
+🔶 *Horário:* ${S.time}
+🔶 *Origem:* ${orig}
+🔶 *Destino:* ${dest}
+🔶 *Pagamento:* ${S.payment}
 🔶 *Ver rota:*
-${linkRota}
+${linkRota}${loyaltyTag}
 
 Aguardo confirmação do valor e do sinal de 30% pra travar o agendamento.`;
 
   const url = `https://wa.me/5548984049856?text=${encodeURIComponent(msg)}`;
   window.open(url, '_blank', 'noopener,noreferrer');
-}
+  renderLoyalty();
+};
 
-gerarChipsData();
-gerarChipsHorario();
+/* ── SCROLL BEHAVIOR ───────────────────────────────────── */
+const navbar = $('#navbar');
+const floatBar = $('#floating-bar');
+const wppDesk = $('#wppDesk');
+
+window.addEventListener('scroll', () => {
+  const y = window.scrollY;
+  if (y > 40) navbar.classList.add('scrolled'); else navbar.classList.remove('scrolled');
+  if (y > 260) floatBar.classList.add('visible'); else floatBar.classList.remove('visible');
+  if (y > 300) wppDesk.classList.add('visible'); else wppDesk.classList.remove('visible');
+}, { passive: true });
+
+/* ── SCROLL REVEAL ─────────────────────────────────────── */
+const revObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in-view'); revObs.unobserve(e.target); } });
+}, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+$$('.reveal').forEach(el => revObs.observe(el));
+
+/* ── INIT ──────────────────────────────────────────────── */
+buildDates();
+buildTimes();
+renderLoyalty();
+
+})();
 </script>
 </body>
 </html>
